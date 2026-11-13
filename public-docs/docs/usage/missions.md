@@ -7,6 +7,8 @@ sidebar_position: 3
 
 Choose an agent in Chat, enter a concrete request and send it. The mission records assistant output, tool activity and its completion state. Use the mission view to inspect activity and errors when a result is missing or unexpected.
 
+Chat controls and the file browser follow the interface language, including Simplified Chinese. The quota monitor also translates its labels and formats usage values and reset dates for the selected locale.
+
 From a terminal:
 
 ```bash
