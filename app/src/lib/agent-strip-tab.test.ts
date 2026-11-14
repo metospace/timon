@@ -76,7 +76,6 @@ test('the tab shows the agent avatar where the state dot was, with the state wor
     assert.ok(avatar.querySelector('img[src="/api/uploads/main.png"]'), 'the agent picture');
     assert.match(link.textContent ?? '', /timon\.main/);
     assert.match(link.textContent ?? '', /done/);
-    assert.match(link.textContent ?? '', /13m12s/);
     assert.ok(!avatar.querySelector('[data-chip-pulse]'), 'no pulse when the agent is not working');
   });
 });

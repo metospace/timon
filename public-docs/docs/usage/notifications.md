@@ -17,6 +17,8 @@ A **Need you** notification also clears by itself once the action it asked for i
 
 The **Copy** button of a notification (in the bell's menu, the Notifications widget, the notification column and the archive) puts its title and its whole text on the clipboard, to paste an error message elsewhere. It works over plain HTTP on a local network too.
 
+Recognized missing-backend warnings follow the interface language, including Simplified Chinese, and link their instructions to the current Settings labels. Agent and plugin messages retain their original text. Dashboard activity, mission states and vault graph controls also follow the selected interface language.
+
 ## Choose what the bell's menu lists
 
 On the archive page, the **Bell menu** block sets what the bell's menu and the Notifications widget list:
