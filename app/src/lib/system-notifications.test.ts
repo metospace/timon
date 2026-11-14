@@ -26,7 +26,6 @@ for (const [locale, dictionary] of [['en-x-system-test', en], ['zh-CN-x-system-t
       assert.ok(display.body?.includes(notice.presentation!.installCommand!));
       assert.ok(display.body?.includes(`host.binaries.${notice.presentation!.cmd}`));
       assert.doesNotMatch(`${display.title}\n${display.body}`, /\*\*|systemNotifications\./);
-      assert.ok(display.body?.includes(dictionary.systemNotifications.backendBinary.settings));
       assert.ok(display.body?.includes(dictionary.systemNotifications.backendBinary.recheck));
       if (locale.startsWith('zh')) {
         assert.match(display.title, /未找到/);

@@ -1,0 +1,7 @@
+{
+  "systemNotifications": {
+    "backendBinary": {
+      "settings": "{settingsPath} › Exécutables CLI"
+    }
+  }
+}
