@@ -2,8 +2,11 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import en from '../locales/en/systemNotifications.json';
 import zh from '../locales/zh-CN/systemNotifications.json';
+import enCore from '../locales/en/core.json';
+import zhCore from '../locales/zh-CN/core.json';
 import { getLocale, registerLocale, setLocale } from './i18n';
 import { systemNotificationText, type PresentableNotification } from './system-notifications';
+import { settingsPath } from './settings-path';
 
 const notice: PresentableNotification = {
   title: 'English daemon diagnostic',
@@ -14,10 +17,10 @@ const notice: PresentableNotification = {
   },
 };
 
-for (const [locale, dictionary] of [['en-x-system-test', en], ['zh-CN-x-system-test', zh]] as const) {
+for (const [locale, dictionary, core] of [['en-x-system-test', en, enCore], ['zh-CN-x-system-test', zh, zhCore]] as const) {
   test(`${locale}: backend CLI warning localizes only its prose and preserves operational values`, () => {
     const previous = getLocale();
-    registerLocale(locale, dictionary);
+    registerLocale(locale, { ...core, ...dictionary });
     setLocale(locale);
     try {
       const display = systemNotificationText(notice);
@@ -25,6 +28,8 @@ for (const [locale, dictionary] of [['en-x-system-test', en], ['zh-CN-x-system-t
       assert.ok(display.title.includes('provider-id, custom-profile'));
       assert.ok(display.body?.includes(notice.presentation!.installCommand!));
       assert.ok(display.body?.includes(`host.binaries.${notice.presentation!.cmd}`));
+      assert.ok(display.body?.includes(settingsPath('models', 'backends')));
+      assert.doesNotMatch(display.body!, /\{settingsPath\}/);
       assert.doesNotMatch(`${display.title}\n${display.body}`, /\*\*|systemNotifications\./);
       assert.ok(display.body?.includes(dictionary.systemNotifications.backendBinary.recheck));
       if (locale.startsWith('zh')) {
